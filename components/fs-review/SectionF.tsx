@@ -2,12 +2,12 @@
 
 import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion";
 import type { SectionF as SectionFType, SectionFFinding } from "@/types/review";
+import { formatFinancialAmount, formatLabeledAmount } from "@/lib/formatNumber";
 import { Calculator } from "lucide-react";
 import ReviewSection from "./ReviewSection";
 
 function formatValue(value: number | string | undefined) {
-  if (value === null || value === undefined || value === "") return "-";
-  return String(value);
+  return formatFinancialAmount(value);
 }
 
 
@@ -126,11 +126,11 @@ export default function SectionF({
               <div className="grid grid-cols-1 gap-3">
                 <div className="p-3 bg-red-50 rounded-lg border border-red-100">
                   <p className="font-bold text-red-800 text-xs uppercase tracking-wider mb-1">Current</p>
-                  <p className="text-red-700">{formatValue(finding.current)}</p>
+                  <p className="text-red-700">{formatLabeledAmount("Found value", finding.current, finding.reported_value)}</p>
                 </div>
                 <div className="p-3 bg-blue-50 rounded-lg border border-blue-100">
                   <p className="font-bold text-blue-800 text-xs uppercase tracking-wider mb-1">Expected</p>
-                  <p className="text-blue-700">{formatValue(finding.expected)}</p>
+                  <p className="text-blue-700">{formatLabeledAmount("Expected value", finding.expected, finding.expected_value)}</p>
                 </div>
               </div>
 

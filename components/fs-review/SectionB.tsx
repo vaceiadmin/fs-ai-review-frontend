@@ -2,6 +2,7 @@
 
 import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion";
 import { CriticalError, Location } from "@/types/review";
+import { formatLabeledAmount } from "@/lib/formatNumber";
 import { AlertTriangle } from "lucide-react";
 import ReviewSection from "./ReviewSection";
 import ImageAnnotation from "./ImageAnnotation";
@@ -68,11 +69,17 @@ export default function SectionB({
               <div className="grid grid-cols-1 gap-3">
                 <div className="p-3 bg-red-50 rounded-lg border border-red-100">
                   <p className="font-bold text-red-800 text-xs uppercase tracking-wider mb-1">Current</p>
-                  <p className="text-red-700">{err.current || "No specific current value found."}</p>
+                  <p className="text-red-700">
+                    {formatLabeledAmount("Found value", err.current, err.reported_value) ||
+                      "No specific current value found."}
+                  </p>
                 </div>
                 <div className="p-3 bg-blue-50 rounded-lg border border-blue-100">
                   <p className="font-bold text-blue-800 text-xs uppercase tracking-wider mb-1">Expected</p>
-                  <p className="text-blue-700">{err.expected || "Standard requirement not met."}</p>
+                  <p className="text-blue-700">
+                    {formatLabeledAmount("Expected value", err.expected, err.expected_value) ||
+                      "Standard requirement not met."}
+                  </p>
                 </div>
               </div>
             </div>

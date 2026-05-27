@@ -33,6 +33,9 @@ export interface CriticalError {
   result?: string;
   current?: string;
   expected?: string;
+  reported_value?: number | string;
+  expected_value?: number | string;
+  difference?: number | string;
   location?: Location[];
 }
 
