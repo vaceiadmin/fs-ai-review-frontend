@@ -26,10 +26,10 @@ export default function UploadPage() {
       formData.append("file", fileToUpload);
       
       const queryParams = new URLSearchParams({
-        countryCode: "US",
-        companyType: "LISTED",
+        countryCode: "MT",
+        companyType: "PRIVATE",
         accountingStandard,
-        regulator: "SEC"
+        regulator: "MFSA",
       }).toString();
 
       const response = await api.post(`/api/v1/upload?${queryParams}`, formData);
